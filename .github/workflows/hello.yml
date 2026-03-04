@@ -23,7 +23,7 @@ jobs:
         run: ls -a
 
       - name: runner's OS
-        run: echo "This job is running on a ${{ runner.os }} server hosted by GitHub! 
+        run: echo "This job is running on a ${{ runner.os }} server hosted by GitHub"
         
 
 
