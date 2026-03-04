@@ -12,4 +12,18 @@ jobs:
     
       - name: greetings from github action
         run: echo "Hello from GitHub Actions!"
+      
+      - name: current date and time
+        run: echo "current date and time = $(date +'%Y-%m-%d %T')"
+
+      - name: name of the branch that triggered the run
+        run: echo "Name of the branch that triggered the run is ${{ github.ref_name }}"
+
+      - name: list the files in the repo 
+        run: ls -a
+
+      - name: runner's OS
+        run: echo "This job is running on a ${{ runner.os }} server hosted by GitHub! 
+        
+
 
