@@ -1,6 +1,7 @@
 name: Pull request test
 on: 
   pull_request:
+    types: [opened] 
     branches: [main]
 jobs:
   pr_check:
