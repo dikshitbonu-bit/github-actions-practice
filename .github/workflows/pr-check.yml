@@ -1,7 +1,7 @@
 name: Pull request test
 on: 
-pull_request:
-  branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
   pr_check:
     runs-on: ubuntu-latest
