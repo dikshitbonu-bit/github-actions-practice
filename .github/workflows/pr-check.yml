@@ -1,0 +1,17 @@
+name: Pull request test
+on: 
+pull_request:
+  branches: [main]
+jobs:
+  pr_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: pr check for main branch
+        run: |
+          echo "PR check running for branch: ${{ github.head_ref }}"
+          echo "Target branch: ${{ github.base_ref }}"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "PR title: ${{ github.event.pull_request.title }}"
