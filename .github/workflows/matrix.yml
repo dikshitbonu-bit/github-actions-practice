@@ -6,6 +6,7 @@ jobs:
   test:
     runs-on: ${{matrix.os}}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest,windows-latest]
         python-version: ['3.10', '3.11', '3.12']
@@ -15,6 +16,7 @@ jobs:
     steps:
       - name: code checkout
         uses: actions/checkout@v4
+        
       - name: setup python
         uses: actions/setup-python@v5
         with:
@@ -25,4 +27,12 @@ jobs:
           python --version
           echo "Testing with Python ${{ matrix.python-version }}"
           echo "OS: ${{ matrix.os }}"
-    
+
+      - name: check fail-fast
+        run: |
+          if [ ${{ matrix.os}} == "windows-latest"] && [ ${{matrix.python-version}} == "3.12"]; then
+             echo "failure...."
+             exit 1
+          fi
+      - name: This runs if previous step succeeds
+        run: echo "Success on ${{ matrix.os }} with Python ${{ matrix.python-version }}"
