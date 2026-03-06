@@ -34,5 +34,6 @@ jobs:
              echo "failure...."
              exit 1
           fi
+        shell: bash
       - name: This runs if previous step succeeds
         run: echo "Success on ${{ matrix.os }} with Python ${{ matrix.python-version }}"
