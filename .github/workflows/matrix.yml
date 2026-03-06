@@ -4,9 +4,10 @@ on:
     branches: [main]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
+        os: [ubuntu-latest,windows-latest]
         python-version: ['3.10', '3.11', '3.12']
     steps:
       - name: code checkout
@@ -20,4 +21,5 @@ jobs:
         run: |
           python --version
           echo "Testing with Python ${{ matrix.python-version }}"
+          echo "OS: ${{ matrix.os }}"
     
