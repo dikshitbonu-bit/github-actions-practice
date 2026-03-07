@@ -1,0 +1,34 @@
+name: github runners
+on: 
+  push:
+    branches: [main]
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: system info 
+        run: |
+          	echo "runner os : ${{ runner.os }}"
+            echo "runner hostname : ${{ runner.name  }}"
+            echo "user : ${{ github.actor  }}"
+  job2:
+    runs-on: macos-latest
+    steps:
+      - name: system info 
+        run: |
+          	echo "runner os : $(sw_vers -productVersion)"
+            echo "runner hostname : $( hostname )"
+            echo "user : $( whomai )"
+  job3:
+    runs-on: windows-latest
+    steps:
+      - name: system info 
+        run: |
+          Write-Output "The Operating System is: $env:RUNNER_OS"
+          Write-Output "The Runner's Hostname is: $env:RUNNER_NAME"
+          Write-Output "The Current User running this job is: $env:GITHUB_ACTOR"
+    
+    
+      
+            
+  
