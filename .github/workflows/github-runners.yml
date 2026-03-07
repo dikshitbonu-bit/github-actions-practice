@@ -11,6 +11,13 @@ jobs:
           echo "The Operating System is: ${{ runner.os}}"
           echo "The Runner's Hostname is: ${{ runner.name }}"
           echo "The Current User (Actor) is: ${{ github.actor }}"
+
+      - name: pre-installed software version check
+        run: |
+          python --version
+          docker --version
+          git --version
+          node --version
   job2:
     runs-on: macos-latest
     steps:
