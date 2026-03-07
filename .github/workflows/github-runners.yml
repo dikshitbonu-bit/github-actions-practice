@@ -8,25 +8,25 @@ jobs:
     steps:
       - name: system info 
         run: |
-          echo "The Operating System is: $RUNNER_OS"
-          echo "The Runner's Hostname is: $RUNNER_NAME"
-          echo "The Current User (Actor) is: $GITHUB_ACTOR
+          echo "The Operating System is: ${{ runner.os}}"
+          echo "The Runner's Hostname is: ${{ runner.name }}"
+          echo "The Current User (Actor) is: ${{ github.actor }}"
   job2:
     runs-on: macos-latest
     steps:
       - name: system info 
         run: |
-          echo "runner os : $(sw_vers -productVersion)"
-          echo "runner hostname : $( hostname )"
-          echo "user : $( whomai )"
+          echo "runner os :  ${{ runner.os}}"
+          echo "runner hostname :  ${{ runner.name }}"
+          echo "user : ${{ github.actor }}"
   job3:
     runs-on: windows-latest
     steps:
       - name: system info 
         run: |
-          Write-Output "The Operating System is: $env:RUNNER_OS"
-          Write-Output "The Runner's Hostname is: $env:RUNNER_NAME"
-          Write-Output "The Current User running this job is: $env:GITHUB_ACTOR"
+          Write-Output "The Operating System is:  ${{ runner.os}}"
+          Write-Output "The Runner's Hostname is:  ${{ runner.name }}"
+          Write-Output "The Current User running this job is: ${{ github.actor }}"
     
     
       
