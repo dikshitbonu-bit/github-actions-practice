@@ -1,0 +1,14 @@
+name: self-hosted runner
+on: 
+  push:
+    branches: [main]
+jobs:
+  self-runner-check:
+    runs-on: self-hosted
+    steps:
+      - name: details of self-host runner
+        run: |
+          echo "HOSTNAME : $(hostname)"
+          echo "PRESENT DIRECTORY: $(pwd)"
+          cd /home/dikshith
+          touch self_hosted
