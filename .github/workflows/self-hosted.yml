@@ -4,7 +4,7 @@ on:
     branches: [main]
 jobs:
   self-runner-check:
-    runs-on: [self-hosted, my-linux-runner]
+    runs-on:  my-linux-runner
     steps:
       - name: details of self-host runner
         run: |
