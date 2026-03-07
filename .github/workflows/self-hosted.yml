@@ -11,4 +11,4 @@ jobs:
           echo "HOSTNAME : $(hostname)"
           echo "PRESENT DIRECTORY: $(pwd)"
           cd /home/dikshith
-          rm self_hosted
+          touch self_hosted
