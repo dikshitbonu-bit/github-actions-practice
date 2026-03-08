@@ -16,4 +16,4 @@ jobs:
     needs: output-set
     steps:
       - name: read output
-        run: echo "DATE  : ${{ needs.output-set.outputs.date}}"
+        run: echo "DATE: ${{ needs.output-set.outputs.date}}"
