@@ -1,0 +1,32 @@
+name: conditionls
+on:
+  workflow_dispatch:
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: only on main
+        if: github.ref_name == 'main'
+        run: |
+          echo "this step runs only on main branch"
+
+      - name: failure step
+        id: failure
+        run: exit 1
+        continue-on-error: true
+
+      - name: step runs only after a failure step
+        if: steps.failure.outcome == 'failure'
+        run: |
+          echo"Previous step failed"
+
+  job2:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: deploy
+        run: echo "deploying to prod"
+  
