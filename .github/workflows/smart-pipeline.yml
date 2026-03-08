@@ -1,0 +1,32 @@
+name: smart-pipeline
+on:
+  workflow_dispatch:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 
+      - name: linting the code
+        run: echo "linting the code"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: running some tests
+        run: echo " running tests on code"
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [lint,test]
+    steps:
+      - name: prints branch type
+        run: |
+          if [ "${{ github.ref_name }}" == "main" ]; then
+            echo " Current Push is from main" 
+          else
+            echo "Current Push is from: ${{ github.ref_name }}"
+          fi
+
+      - name: print commit info
+        run: echo "Commit message ${{ github.event.commits[0].message }}"
