@@ -7,11 +7,11 @@ jobs:
     steps:
       - name: create a log file artifact
         run: |
-          cd
-          echo "This is a log file from github actions" > logfile
+          mkdir -p logs
+          echo "This is a log file from github actions" > logs/logfile
 
       - name: upload artifact
         uses:  actions/upload-artifact@v4
         with:
           name: logfile 
-          path: /home/runner
+          path: logs/
