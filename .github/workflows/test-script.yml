@@ -1,0 +1,18 @@
+name: test script
+on: 
+  workflow_dispatch:
+jobs:
+  script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: make script executable
+        run: chmod +x test-script.sh
+      - name: run the script and save the output to a file
+        run: ./test-script.sh | tee test-results.txt
+      - name: upload test-results
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results.txt
