@@ -1,4 +1,4 @@
-name: artifacts-upload
+name: artifacts-upload and download
 on:
   workflow_dispatch:
 jobs:
@@ -7,11 +7,21 @@ jobs:
     steps:
       - name: create a log file artifact
         run: |
-          mkdir -p logs
-          echo "This is a log file from github actions" > logs/logfile
+          echo "This is a log file from github actions" > logfile.txt
 
       - name: upload artifact
         uses:  actions/upload-artifact@v4
         with:
           name: logfile 
-          path: logs/
+          path: logfile.txt
+  artifact-download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download logfile.txt
+        uses: actions/download-artifact@v4
+        with:
+          name: logfile
+      - name: use logfile in a step
+        run: |
+          cat logfile.txt
+          
