@@ -1,0 +1,17 @@
+name: artifacts-upload
+on:
+  workflow_dispatch:
+jobs:
+  artifacts-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create a log file artifact
+        run: |
+          cd
+          echo "This is a log file from github actions" > logfile
+
+      - name: upload artifact
+        uses:  actions/upload-artifact@v4
+        with:
+          name: logfile 
+          path: /home/${{ runner.name }}
