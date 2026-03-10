@@ -9,11 +9,9 @@ jobs:
         run: |
           cd
           echo "This is a log file from github actions" > logfile
-          ls
-          pwd
 
       - name: upload artifact
         uses:  actions/upload-artifact@v4
         with:
           name: logfile 
-          path: .
+          path: /home/runner
