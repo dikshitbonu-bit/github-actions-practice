@@ -27,6 +27,6 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             ${{ vars.DOCKER_USERNAME }}/github-actions-app:latest
-            ${{ vars.DOCKER_USERNAME }}/github-actions-app:${{ github.sha }}
+            ${{ vars.DOCKER_USERNAME }}/github-actions-app:${{ env.SHA_SHORT }}
 
   
