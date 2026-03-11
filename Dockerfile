@@ -10,4 +10,8 @@ COPY . .
 
 EXPOSE 3000
 
+ARG GIT_COMMIT_SHA
+
+ENV GIT_COMMIT=${GIT_COMMIT_SHA}
+
 CMD ["node", "app.js"]
