@@ -10,30 +10,59 @@ app.get('/', (req, res) => {
       <title>Day 45 - Docker CI/CD</title>
       <style>
         body {
-          font-family: Arial, sans-serif;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background: #000;
           display: flex;
           justify-content: center;
           align-items: center;
           height: 100vh;
           margin: 0;
+          overflow: hidden;
+        }
+        body::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: 
+            radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(74, 86, 226, 0.3), transparent 50%),
+            radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.2), transparent 50%);
+          filter: blur(60px);
         }
         .container {
-          background: white;
-          padding: 40px;
-          border-radius: 10px;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-          text-align: center;
-        }
-        h1 { color: #667eea; margin: 0 0 20px 0; }
-        .info { color: #666; margin: 10px 0; }
-        .badge { 
-          background: #667eea; 
-          color: white; 
-          padding: 5px 15px; 
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 50px 60px;
           border-radius: 20px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+          text-align: center;
+          position: relative;
+          z-index: 1;
+        }
+        h1 { 
+          color: #fff;
+          margin: 0 0 20px 0;
+          font-size: 2em;
+          font-weight: 600;
+        }
+        .info { 
+          color: rgba(255, 255, 255, 0.8);
+          margin: 15px 0;
+          font-size: 1em;
+        }
+        .badge { 
+          background: rgba(120, 119, 198, 0.3);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: #fff;
+          padding: 8px 20px;
+          border-radius: 25px;
           display: inline-block;
           margin: 10px 5px;
+          backdrop-filter: blur(5px);
+          font-weight: 500;
         }
       </style>
     </head>
