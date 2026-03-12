@@ -6,6 +6,8 @@ jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      
       - name:  Greet in English
         id: greet-en
         uses: ./.github/actions/setup-and-greet
