@@ -16,7 +16,8 @@ jobs:
       runs-on: uubuntu-latest
       steps:
         - name: print build version
-          run:  echo "Deploying version: ${{ needs.build.outputs.version }}"
+          run: | 
+            echo "Deploying version: ${{ needs.build.outputs.version }}"
       
     
       
