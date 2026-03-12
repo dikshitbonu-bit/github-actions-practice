@@ -1,0 +1,12 @@
+name: caller build
+on: 
+  push:
+    branches: [main]
+
+jobs:
+    build:
+     uses: ./.github/workflows/reusable-build.yml
+     with:
+      app_name: "my-web-app"
+      environment: "production"
+     secrets: inherit
