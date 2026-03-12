@@ -20,6 +20,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }} #expose output
     steps:
       - name: checkout code
         uses: actions/checkout@v4
@@ -34,4 +36,9 @@ jobs:
           else
             echo "Docker token is not set"
           fi
+      - name: set build version
+        id: version
+        run: |
+          SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
+          echo "VERSION=v1.0-$SHORT_SHA" >> $GITHUB_ENV
           
