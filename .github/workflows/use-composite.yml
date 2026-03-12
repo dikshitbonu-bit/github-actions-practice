@@ -1,0 +1,24 @@
+name: uses composite action
+on: 
+  push:
+    branches: [main]
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name:  Greet in English
+        id: greet-en
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: 'DevOps Engineer'
+          language: 'en'
+      
+      - name: Greet in Spanish
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: 'Ingeniero'
+          language: 'es'
+      
+      - name: Check if greeted
+        run: |
+          echo "Greeted successfully: ${{ steps.greet-en.outputs.greeted }}"
