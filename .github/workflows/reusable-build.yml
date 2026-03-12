@@ -16,12 +16,16 @@ on:
       DOCKER_TOKEN:
         description: 'DOCKER TOKEN'
         required: true
+    outputs:
+      build-version:
+        description: 'Generated build version'
+        value: ${{ jobs.reusable.outputs.version }}
          
 jobs:
   reusable:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.version.outputs.VERSION }} #expose output
+      version: ${{ steps.version-build.outputs.version }} #expose output
     steps:
       - name: checkout code
         uses: actions/checkout@v4
@@ -37,8 +41,9 @@ jobs:
             echo "Docker token is not set"
           fi
       - name: set build version
-        id: version
+        id: version-build
         run: |
-          SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
-          echo "VERSION=v1.0-$SHORT_SHA" >> $GITHUB_OUTPUT
+           SHORT_SHA=${GITHUB_SHA:0:7}
+           VERSION="v1.0-$SHORT_SHA"
+           echo "version=$VERSION" >> $GITHUB_OUTPUT
           
