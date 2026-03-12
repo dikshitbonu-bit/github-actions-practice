@@ -18,7 +18,7 @@ on:
         required: true
          
 jobs:
-  build:
+  reusable:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.VERSION }} #expose output
