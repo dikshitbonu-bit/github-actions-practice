@@ -40,5 +40,5 @@ jobs:
         id: version
         run: |
           SHORT_SHA=$(echo $GITHUB_SHA | cut -c1-7)
-          echo "VERSION=v1.0-$SHORT_SHA" >> $GITHUB_ENV
+          echo "VERSION=v1.0-$SHORT_SHA" >> $GITHUB_OUTPUT
           
