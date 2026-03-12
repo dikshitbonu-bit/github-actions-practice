@@ -6,8 +6,18 @@ on:
 
 jobs:
     build:
-     uses: ./.github/workflows/reusable-build.yml
-     with:
-      app_name: "my-web-app"
-      environment: "production"
-     secrets: inherit
+      uses: ./.github/workflows/reusable-build.yml
+      with:
+        app_name: "my-web-app"
+        environment: "production"
+      secrets: inherit
+    deploy:
+      needs: build
+      runs-on: uubuntu-latest
+      steps:
+        - name: print build version
+          run:  echo "Deploying version: ${{ needs.build.outputs.version }}"
+      
+    
+      
+   
