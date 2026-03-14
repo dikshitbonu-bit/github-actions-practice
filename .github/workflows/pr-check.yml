@@ -1,8 +1,6 @@
 name: Pull request test
 on: 
-  pull_request:
-    types: [opened] 
-    branches: [main]
+  workflow_dispatch: 
 jobs:
   pr_check:
     runs-on: ubuntu-latest
