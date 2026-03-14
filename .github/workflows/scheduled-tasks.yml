@@ -1,0 +1,22 @@
+name: cron-scheduling
+on: 
+ schedule:
+   - cron: '30 2 * * 1'
+   - cron: '0 */6 * * *'
+ workflow_dispatch:
+jobs:
+  schedule-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigged by
+        run: echo "schedule triggered using ${{ github.event.schedule }}"
+      - name: health check 
+        run: |
+          status=$(curl -s -o /dev/null -w "%{http_code}" https://github.com)
+          if [ "$status" -ne 200 ]; then
+            echo " service is unhealthy"
+            exit 1
+          fi
+          echo "service is healthy and health check passed"
+          
+  
