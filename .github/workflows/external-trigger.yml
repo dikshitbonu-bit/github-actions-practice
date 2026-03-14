@@ -1,0 +1,19 @@
+name: external trigger
+on: 
+  repository_dispatch:
+    types: [deploy-request]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print client payload
+        run: echo "Environment :> ${{ github.event.client_payload.environment }}"
+
+      - name: Deploy to environment
+        run: |
+          ENV="${{ github.event.client_payload.environment }}"
+          if [ "$ENV" == "production" ]; then
+            echo " Deploying to PRODUCTION"
+          else
+            echo " Deploying to $ENV"
+          fi
