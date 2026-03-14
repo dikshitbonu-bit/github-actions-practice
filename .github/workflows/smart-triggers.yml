@@ -1,0 +1,20 @@
+name: paths and branch filters
+on: 
+  push:
+    branches:
+      - main
+      - release/*
+    paths:
+      - 'src/**'
+      - 'app/**'
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+jobs:
+ paths:
+   runs-on: ubuntu-latest
+   steps:
+     - name: checkout code
+       uses: actions/checkout@v4
+     -  run: echo "hello"
+  
