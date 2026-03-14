@@ -7,9 +7,7 @@ on:
     paths:
       - 'src/**'
       - 'app/**'
-    paths-ignore:
-      - '*.md'
-      - 'docs/**'
+
 jobs:
  paths:
    runs-on: ubuntu-latest
