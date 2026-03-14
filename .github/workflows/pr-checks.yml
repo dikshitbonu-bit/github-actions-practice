@@ -1,0 +1,59 @@
+name: pr-checks
+on: 
+ pull_request: 
+   branches: [main]
+jobs:
+  file-size-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name:  code checkout and 
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: file-size-check
+        run: |
+          git diff --name-only origin/${{ github.base_ref }}...HEAD | while read file; do
+            if [ -f "$file" ]; then
+              size=$(stat -c%s "$file")  # size in bytes
+              echo "$file => ${size} bytes"
+
+              if [ "$size" -gt 1048576 ]; then  
+                echo " FAIL: $file exceeds 1MB (${size} bytes)"
+                exit 1
+              fi
+            fi
+          done
+          echo "All files are under 1MB"
+
+  branch-name-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: branch-name-check
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          if [[ "$BRANCH" =~ ^(feature|fix|docs)/.+ ]]; then
+            echo " Branch name is valid: $BRANCH"
+          else
+            echo " FAIL: Branch '$BRANCH' doesn't follow naming convention"
+            echo "Expected: feature/*, fix/*, or docs/*"
+            exit 1  
+          fi
+  pr-body-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pr-body-check
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+
+          if [ -z "$BODY" ]; then
+            echo "WARNING: PR description is empty"
+            echo "Please describe what this PR does and why"
+            
+          else
+            echo "PR has a description"
+          fi
+    
+    
+      
+        
+        
